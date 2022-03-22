@@ -1,5 +1,5 @@
 document.querySelector('.nav__hamburger--button').addEventListener("click", ()=>{
-  document.querySelector('.nav__bar').classList.toggle('nav__bar--show');
+  document.querySelector('.nav__bar').classList.toggle('');
 })
 
 document.querySelector('.url__input').addEventListener("focus", ()=>{

@@ -129,8 +129,14 @@
     &__list{
       overflow-y: scroll;
       width:100%;
+      scrollbar-width: none;
       max-width: 800px;
+      &::-webkit-scrollbar{
+        display: none;
+      }
     }
+
+    
 
     &__card{
       min-width:230px;
