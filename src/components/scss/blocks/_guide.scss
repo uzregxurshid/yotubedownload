@@ -1,0 +1,146 @@
+.guide {
+  margin-top: 36px;
+  background: #fefefe;
+  padding-top: 19px;
+  position: relative;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &__abs{
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    color: #000000;
+    height: 60px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    background: #F2F2F2;
+    border-radius: 5px;
+    width: 354px;
+    position: absolute;
+    top: 0;
+    right:0;
+    margin-top: -30px;
+  }
+
+  &__header {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    color: #000000;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 11px;
+    padding-right: 19px;
+    background: #F2F2F2;
+    border-radius: 5px;
+    width: max-content;
+  }
+
+  &__define {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
+    color: #555555;
+    margin-top: 19px;
+  }
+
+  &__list {
+    display: flex;
+    margin-top: 23px;
+    @include list-unstyled;
+  }
+
+  &__card {
+    width: 230px;
+
+    &--header {
+      font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+      margin-top: 20px;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 20px;
+      color: #000000;
+    }
+
+    &--text {
+      font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+      font-style: normal;
+      margin-top: 20px;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 20px;
+      color: #555555;
+    }
+  }
+
+  &__card~&__card {
+    margin-left: 135px;
+  }
+
+  @include max-width(1250px){
+    &__abs{
+      display: none;
+    }
+  }
+
+  @include max-width(1000px){
+    &__card ~ &__card {
+      margin-left: 100px;
+    }
+
+    &__define{
+      text-align: center;
+    }
+  }
+
+  @include max-width(920px){
+    &__card ~ &__card {
+      margin-left: 80px;
+    }
+  }
+
+  @include max-width(870px){
+    &__card ~ &__card {
+      margin-left: 60px;
+    }
+  }
+
+  @include max-width(850px){
+    &__card ~ &__card {
+      margin-left: 40px;
+    }
+  }
+
+  @include max-width(800px){
+    &__list{
+      overflow-y: scroll;
+      width:100%;
+      max-width: 800px;
+    }
+
+    &__card{
+      min-width:230px;
+    }
+  }
+
+  @include max-width(550px){
+    &__header{
+      display: none;
+    }
+  }
+
+}

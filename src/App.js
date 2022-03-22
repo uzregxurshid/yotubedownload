@@ -1,8 +1,9 @@
+import './components/scss/main.scss'
 const App = ()=> {
   return (
-    <>
-      Hello
-    </>
+      <>
+
+      </>
     );
 }
 
