@@ -11,7 +11,6 @@ import GuideImage1 from './components/images/guide/image2.jpg';
 import GuideImage2 from './components/images/guide/image3.jpg';
 import GuideImage3 from './components/images/guide/image4.jpg';
 import Download from './components/images/result/Interface-Download.svg';
-import Update from './components/images/result/Edit-Undo.svg';
 import { useRef, useState } from 'react';
 import axios from 'axios';
 
