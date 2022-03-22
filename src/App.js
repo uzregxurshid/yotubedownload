@@ -16,11 +16,15 @@ import { useState } from 'react';
 
 const App = () => {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => {setOpen(!open);};
-  const handleClose = (e) => {
-    e.target===e.currentTarget && setOpen(!open);
-
+  const [formClass, setFormClass] = useState(false);
+  const handleOpen = () => { setOpen(!open); };
+  const handleClose = (e) => { e.target === e.currentTarget && setOpen(!open); };
+  const handleCloser = () => { setOpen(!open); };
+  const handleForm = (e) => {
+    setFormClass(!formClass);
   };
+
+  
   return (
     <>
       <header>
@@ -33,23 +37,23 @@ const App = () => {
                 {/* <!-- hamburger button --> */}
                 <div className="nav__hamburger">
                   <button className="nav__hamburger--button" type="button" aria-label="hamburger button" aria-hidden="true" onClick={handleOpen}>
-                    <img className="nav__hamburger--image" src={hamburgerButton} alt="hamburger"/>
+                    <img className="nav__hamburger--image" src={hamburgerButton} alt="hamburger" />
                   </button>
                 </div>
 
                 {/* <!-- A container for the menu. --> */}
-                <div className={`nav__bar ${open&&('nav__bar--show')}`} onClick={handleClose}>
+                <div className={`nav__bar ${open && ('nav__bar--show')}`} onClick={handleClose}>
                   <div className="nav__menu">
                     <div className="nav__menu--top">
                       <div className="nav__menu--logo">
                         <a href="/">
                           <img className="nav__menu--logo--image" width="127" height="29"
-                            src={sitelogo} alt="logo"/>
+                            src={sitelogo} alt="logo" />
                         </a>
                       </div>
                       <div className="nav__menu--close">
-                        <button className="nav__menu--button" type="button" aria-label="close menu" aria-hidden="true">
-                          <img className="nav__menu--image" src={menuClose} alt="close"/>
+                        <button className="nav__menu--button" type="button" aria-label="close menu" aria-hidden="true" onClick={handleCloser}>
+                          <img className="nav__menu--image" src={menuClose} alt="close" />
                         </button>
                       </div>
                     </div>
@@ -65,13 +69,13 @@ const App = () => {
                     {/* <!-- A list of links. --> */}
                     <ul className="nav__menu--list">
                       <li className="nav__menu--item">
-                        <a className="nav__menu--link" href="#">Contacts</a>
+                        <a className="nav__menu--link" href={'/'}>Contacts</a>
                       </li>
                       <li className="nav__menu--item">
-                        <a className="nav__menu--link" href="#">Terms of Service</a>
+                        <a className="nav__menu--link" href={'/'}>Terms of Service</a>
                       </li>
                       <li className="nav__menu--item">
-                        <a className="nav__menu--link" href="#">Privacy Policy</a>
+                        <a className="nav__menu--link" href={'/'}>Privacy Policy</a>
                       </li>
                     </ul>
 
@@ -79,21 +83,21 @@ const App = () => {
                     <div className="nav__menu--social nav__social">
                       <ul className="nav__social--list">
                         <li className="nav__social--item">
-                          <a className="nav__social--link" href="#">
-                            <img className="nav__social--image" src={Github} alt="Github"/>
-                              <span className="nav__social--text">Github</span>
+                          <a className="nav__social--link" href={'/'}>
+                            <img className="nav__social--image" src={Github} alt="Github" />
+                            <span className="nav__social--text">Github</span>
                           </a>
                         </li>
                         <li className="nav__social--item">
-                          <a className="nav__social--link" href="#">
-                            <img className="nav__social--image" src={Youtube} alt="Youtube"/>
-                              <span className="nav__social--text">Youtube</span>
+                          <a className="nav__social--link" href={'/'}>
+                            <img className="nav__social--image" src={Youtube} alt="Youtube" />
+                            <span className="nav__social--text">Youtube</span>
                           </a>
                         </li>
                         <li className="nav__social--item">
-                          <a className="nav__social--link" href="#">
-                            <img className="nav__social--image" src={Reddit} alt="Reddit"/>
-                              <span className="nav__social--text">Reddit</span>
+                          <a className="nav__social--link" href={'/'}>
+                            <img className="nav__social--image" src={Reddit} alt="Reddit" />
+                            <span className="nav__social--text">Reddit</span>
                           </a>
                         </li>
                       </ul>
@@ -106,7 +110,10 @@ const App = () => {
 
                 {/* <!-- Add logotype --> */}
                 <a href="index.html" className="nav__logotype">
-                  <img className="nav__logotype--image" src={NavbarLogo} width="174" height="35" alt="logotype"/>
+                  <img className="nav__logotype--image" src={NavbarLogo} width="1/* It's a number of
+                  the last element in
+                  the array. */
+                  74" height="35" alt="logotype" />
                 </a>
               </div>
               <div className="nav__right">
@@ -139,17 +146,17 @@ const App = () => {
                 </p>
 
                 {/* <!-- A form that allows you to enter a URL and download it. --> */}
-                <form className="url__form" action="/" method="post">
+                <form className={`url__form ${formClass&&('url__hover')}`} action="/" method="post">
                   <input className="url__input" type="search" name="tiktok" id="tiktok"
-                    placeholder="Paste TikTok video link here"/>
-                    <button className="url__button" type="button">Download &darr;</button>
+                    placeholder="Paste TikTok video link here" onFocus={handleForm}/>
+                  <button className="url__button" type="button">Download &darr;</button>
                 </form>
 
                 {/* <!-- A button that opens the instructions. --> */}
                 <button type="button" className="url__howto">
                   <span className="url_howto--info">&#x24D8;</span>
                   <span className="url__howto--text">How to start?</span>
-                  <img className="url__howto--down--image" src={ArrowDown} alt="down"/>
+                  <img className="url__howto--down--image" src={ArrowDown} alt="down" />
                 </button>
 
                 {/* <!-- For google adsense --> */}
@@ -180,7 +187,7 @@ const App = () => {
                 <ul className="guide__list">
                   <li className="guide__card">
                     <div className="guide__card--images">
-                      <img src={GuideImage1} alt="guide" className="guide__card--image"/>
+                      <img src={GuideImage1} alt="guide" className="guide__card--image" />
                     </div>
                     <h3 className="guide__card--header">
                       1. Copy the URL
@@ -191,7 +198,7 @@ const App = () => {
                   </li>
                   <li className="guide__card">
                     <div className="guide__card--images">
-                      <img src={GuideImage2} alt="guide" className="guide__card--image"/>
+                      <img src={GuideImage2} alt="guide" className="guide__card--image" />
                     </div>
                     <h3 className="guide__card--header">
                       2. Paste the URL into the input field
@@ -203,7 +210,7 @@ const App = () => {
                   </li>
                   <li className="guide__card">
                     <div className="guide__card--images">
-                      <img src={GuideImage3} alt="guide" className="guide__card--image"/>
+                      <img src={GuideImage3} alt="guide" className="guide__card--image" />
                     </div>
                     <h3 className="guide__card--header">
                       3. Click the download button
@@ -228,9 +235,9 @@ const App = () => {
                 </p>
                 <ul className="result__list">
                   <li className="result__item">
-                    <a className="result__items" href="#">
+                    <a className="result__items" href={'/'}>
                       <div className="result__items--left">
-                        <img src={Download} alt="Download"/>
+                        <img src={Download} alt="Download" />
                       </div>
                       <div className="result__items--center">
                         Download video (server #1)
@@ -240,9 +247,9 @@ const App = () => {
                     </a>
                   </li>
                   <li className="result__item">
-                    <a className="result__items" href="#">
+                    <a className="result__items" href={'/'}>
                       <div className="result__items--left">
-                        <img src={Update} alt="Retry"/>
+                        <img src={Update} alt="Retry" />
                       </div>
                       <div className="result__items--center">
                         Download other video
