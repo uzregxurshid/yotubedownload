@@ -182,8 +182,8 @@ const App = () => {
 
                 {/* <!-- A form that allows you to enter a URL and download it. --> */}
                 <form className={`url__form ${formClass&&('url__hover')}`}  onSubmit={handleFetch}>
-                  <input className="url__input" type="search" name="tiktok" id="tiktok"
-                    placeholder="Paste TikTok video link here" onFocus={handleForm} value={url} onInput={handleInput}/>
+                  <input className="url__input" type="search" name="youtube" id="youtube"
+                    placeholder="Paste Youtube video link here" onFocus={handleForm} value={url} onInput={handleInput}/>
                   <button className="url__button" type="button" onClick={handleFetch}>Download &darr;</button>
                   {/* error text */}
                 </form>
@@ -211,14 +211,14 @@ const App = () => {
             <div className="container">
               <div className="guide__container">
                 <h2 className="guide__header">
-                  How to start Tik Tok video download with our service?
+                  How to start Youtube video download with our service?
                 </h2>
 
                 <p className="guide__abs">
-                  How to start Tik Tok video download with our service?
+                  How to start Youtube video download with our service?
                 </p>
                 <p className="guide__define">
-                  To save TikTok video using SaveFrom.net, you need to follow three short steps. Have a look at them:
+                  To save Youtube video using SaveFrom.net, you need to follow three short steps. Have a look at them:
                 </p>
 
                 <ul className="guide__list">
@@ -230,7 +230,7 @@ const App = () => {
                       1. Copy the URL
                     </h3>
                     <p className="guide__card--text">
-                      Open the Tik Tok page with a video that you want to save, copy its URL and go back to SaveFrom.net.
+                      Open the Youtube page with a video that you want to save, copy its URL and go back to SaveFrom.net.
                     </p>
                   </li>
                   <li className="guide__card">
