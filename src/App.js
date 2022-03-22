@@ -145,10 +145,7 @@ const App = () => {
 
                 {/* <!-- Add logotype --> */}
                 <a href="index.html" className="nav__logotype">
-                  <img className="nav__logotype--image" src={NavbarLogo} width="1/* It's a number of
-                  the last element in
-                  the array. */
-                  74" height="35" alt="logotype" />
+                  <img className="nav__logotype--image" src={NavbarLogo} width="174" height="35" alt="logotype" />
                 </a>
               </div>
               <div className="nav__right">
