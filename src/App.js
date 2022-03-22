@@ -12,9 +12,14 @@ import GuideImage2 from './components/images/guide/image3.jpg';
 import GuideImage3 from './components/images/guide/image4.jpg';
 import Download from './components/images/result/Interface-Download.svg';
 import Update from './components/images/result/Edit-Undo.svg';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import axios from 'axios';
+
+// https://www.youtube.com/watch?v=DfY0C57b0bE
+
 
 const App = () => {
+  const finall = useRef(null);
   const [open, setOpen] = useState(false);
   const [formClass, setFormClass] = useState(false);
   const handleOpen = () => { setOpen(!open); };
@@ -23,8 +28,39 @@ const App = () => {
   const handleForm = (e) => {
     setFormClass(!formClass);
   };
+  const [result, setResult] = useState([]);
+  const [url, setUrl] = useState('');
+  const handleInput = (e) => {
+    setError(false);
+    setUrl(e.target.value);
+  };
 
-  
+  const [error,setError] = useState('');
+
+  const handleFetch = (e) => {
+    e.preventDefault();
+    axios.get(`http://localhost:5000?url=${url}`)
+    .then((response) => {
+      console.log(response.data.data);
+      if(response.data.status === 'error') {
+        setError(response.data.message);
+      }
+      else {
+        setResult(response.data.data);
+        // focus on the result section
+        finall.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    })
+    .catch((error) => {
+      setError(!error);
+    });
+  }
+
+  const Calculate=(lastResult)=>{
+    return (lastResult.width*lastResult.height*lastResult.fps*lastResult.bitrate*((lastResult.approxDurationMs-0)/232460731789459000)).toFixed(3).toString() + " +- 10%"
+  }
+
+
   return (
     <>
       <header>
@@ -142,15 +178,17 @@ const App = () => {
                   Yotube Video Download
                 </h1>
                 <p className="url__define">
-                  Without Watermark. Fast. All devices
+                  Free. Fast. All devices
                 </p>
 
                 {/* <!-- A form that allows you to enter a URL and download it. --> */}
-                <form className={`url__form ${formClass&&('url__hover')}`} action="/" method="post">
+                <form className={`url__form ${formClass&&('url__hover')}`}  onSubmit={handleFetch}>
                   <input className="url__input" type="search" name="tiktok" id="tiktok"
-                    placeholder="Paste TikTok video link here" onFocus={handleForm}/>
-                  <button className="url__button" type="button">Download &darr;</button>
+                    placeholder="Paste TikTok video link here" onFocus={handleForm} value={url} onInput={handleInput}/>
+                  <button className="url__button" type="button" onClick={handleFetch}>Download &darr;</button>
+                  {/* error text */}
                 </form>
+                <p className="url__error">{error}</p>
 
                 {/* <!-- A button that opens the instructions. --> */}
                 <button type="button" className="url__howto">
@@ -226,7 +264,9 @@ const App = () => {
           </div>
         </section>
 
-        <section>
+      {
+        result&&(
+          <section ref={finall}>
           <div className="result">
             <div className="container">
               <div className="result__container">
@@ -234,35 +274,34 @@ const App = () => {
                   Short video description
                 </p>
                 <ul className="result__list">
-                  <li className="result__item">
-                    <a className="result__items" href={'/'}>
-                      <div className="result__items--left">
-                        <img src={Download} alt="Download" />
-                      </div>
-                      <div className="result__items--center">
-                        Download video (server #1)
-                      </div>
-                      <div className="result__items--right">
-                      </div>
-                    </a>
-                  </li>
-                  <li className="result__item">
-                    <a className="result__items" href={'/'}>
-                      <div className="result__items--left">
-                        <img src={Update} alt="Retry" />
-                      </div>
-                      <div className="result__items--center">
-                        Download other video
-                      </div>
-                      <div className="result__items--right">
-                      </div>
-                    </a>
-                  </li>
+                 {
+                   result.map((item, index)=>{
+                     return (
+                      <li className="result__item" key={index}>
+                      <a className="result__items" href={item.url}>
+                        <div className="result__items--left">
+                          <img src={Download} alt="Download" />
+                        </div>
+                        <div className="result__items--center">
+                          <span>{item.container}</span>
+                          <span style={{margin:"0 10px"}}>{item.contentLength?((item.contentLength-0)/1024/1024).toFixed(3):(Calculate(item))}  MB</span>
+                          <span>{item.qualityLabel?item.qualityLabel:"audio"}</span>
+                        </div>
+                        <div className="result__items--right">
+                        </div>
+                      </a>
+                      </li>
+                     )
+                    })
+                 }
+                  
                 </ul>
               </div>
             </div>
           </div>
         </section>
+        )
+      }
       </main>
     </>
   );
