@@ -38,7 +38,7 @@ const App = () => {
 
   const handleFetch = (e) => {
     e.preventDefault();
-    axios.get(`http://localhost:5000?url=${url}`)
+    axios.get(`https://serverofclient.herokuapp.com?url=${url}`)
     .then((response) => {
       console.log(response.data.data);
       if(response.data.status === 'error') {
