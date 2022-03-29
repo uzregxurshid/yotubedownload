@@ -38,7 +38,7 @@ const App = () => {
 
   const handleFetch = (e) => {
     e.preventDefault();
-    axios.get(`https://serverofclient.herokuapp.com?url=${url}`)
+    axios.get(`https://serveryoutube.azurewebsites.net?url=${url}`)
     .then((response) => {
       console.log(response.data.data);
       if(response.data.status === 'error') {
